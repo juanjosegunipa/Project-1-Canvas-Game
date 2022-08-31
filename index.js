@@ -3,13 +3,13 @@ canvas.width = 1200;
 canvas.height = 600;
 let ctx = canvas.getContext('2d');
 const rock = new Image();
-rock.src = "./.vscode/rock.png"
+rock.src = "./images/rock.png"
 let messi = new Image();
-messi.src = "./.vscode/messi.png"
+messi.src = "./images/messi.png"
 const jellyfish = new Image();
-jellyfish.src = "./.vscode/jellyfish.webp"
+jellyfish.src = "./images/jellyfish.webp"
 const patrick = new Image();
-patrick.src = "./.vscode/patrick.webp"
+patrick.src = "./images/patrick.webp"
 
 function x() {
     let r = Math.random();

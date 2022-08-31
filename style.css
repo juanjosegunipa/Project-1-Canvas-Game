@@ -1,6 +1,6 @@
 body {
     color: #ffffff;
-    background-image: url('./.vscode/bg.jpg');
+    background-image: url('./images/bg.jpg');
     background-size: 100vw;
     text-align: center;
     padding-top: 100px;
@@ -8,7 +8,7 @@ body {
 
 canvas {
     /* border: 1px solid blue; */
-    background-image: url("./.vscode/sand.jpg");
+    background-image: url("./images/sand.jpg");
     text-align: center;
 }
 
