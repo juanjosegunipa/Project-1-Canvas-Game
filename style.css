@@ -13,7 +13,8 @@ canvas {
 }
 
 #start,
-#game-over {
+#game-over,
+#you-win {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     padding: 20px;
@@ -28,7 +29,8 @@ canvas {
 }
 
 #start a,
-#game-over a {
+#game-over a,
+#you-win a {
     border: 3px solid white;
     color: white;
     text-decoration: none;

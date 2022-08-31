@@ -46,19 +46,6 @@ let maze = [
     [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
 ]
 
-// function map(m) {
-//     for (let i = 0; i < m.length; i++) {
-//         for (let j = 0; j < m[i].length; j++) {
-//             if (m[i][j] === 1) {
-//                 ctx.beginPath();
-//                 ctx.drawImage(rock, j * 25, i * 25, 25, 25);
-//             } else if (m[i][j] === 2) {
-//                 ctx.drawImage(patrick, j * 25, i * 25, 25, 25);
-//             }
-//         }
-//     }
-// }
-
 class Player {
     constructor(img, width, height, x, y, color) {
         this.width = width;
@@ -80,7 +67,17 @@ class Player {
         if (keyCode === 38 && maze[this.y - 1][this.x] === 0) this.y -= 1;
         if (keyCode === 39 && maze[this.y][this.x + 1] === 0) this.x += 1;
         if (keyCode === 40 && maze[this.y + 1][this.x] === 0) this.y += 1;
-        // console.log(this.x, this.y, maze.length, maze[0].length, maze[this.y][this.x])
+        if (keyCode === 38 && maze[this.y - 1][this.x] === 2) {
+            this.y -= 1;
+            console.log('You win!')
+            youWin();
+        }
+        if (keyCode === 40 && maze[this.y + 1][this.x] === 2) {
+            this.y += 1;
+            console.log('You win!')
+            youWin();
+        }
+
     }
 }
 
@@ -111,33 +108,6 @@ for (let i = 0; i < randomPosition.length; i++) {
 }
 let myFrameCount = 0;
 
-// let monsterOne = new Monsters(jellyfish, 12, 20);
-
-// setInterval(() => {
-//     myFrameCount++;
-//     // player.move(e.keyCode)
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     map(maze);
-//     player.updatePlayer()
-//     if (myFrameCount % 250 === 0) {
-//         randomPosition.push(new Monsters(jellyfish, Math.random() * (canvas.width - 35), 0));
-//     }
-//     for (let i = 0; i < randomPosition.length; i++) {
-//         randomPosition[i].updateMonster()
-//     }
-
-//     // ctx.clearRect(0, 0, canvas.width, canvas.height)
-//     for (let i = 0; i < randomPosition.length; i++) {
-//         randomPosition[i].drawMonster()
-//         if (col(randomPosition[i])) {
-//             // alert('Press the key')
-//             console.log('collision detected')
-//         }
-//     }
-// }, 20)
-
-// randomPosition.push(monsterOne);
-
 function col(monster) {
     if ((player.x * player.width) < monster.x + monster.width && (player.x * player.width) + player.width > monster.x && (player.y * player.height) < monster.y + monster.width && (player.y * player.height) + player.height > monster.y) {
         return true
@@ -145,25 +115,16 @@ function col(monster) {
 }
 
 
-// document.addEventListener('keydown', (e) => {
-//     player.move(e.keyCode)
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     map(maze)
-//     player.updatePlayer()
-// });
-
-// document.addEventListener('keyup', (e) => {
-//     player.newX = 0;
-//     player.newY = 0;
-// })
 
 function startGame() {
     let start = document.querySelector("#start");
     let canvasGame = document.querySelector("canvas");
     let gameOver = document.querySelector("#game-over");
+    let victory = document.querySelector('#you-win');
     start.style.display = "none";
     canvasGame.style.display = "inline-block";
     gameOver.style.display = "none";
+    victory.style.display = "none";
     function map(m) {
         for (let i = 0; i < m.length; i++) {
             for (let j = 0; j < m[i].length; j++) {
@@ -188,7 +149,6 @@ function startGame() {
     })
     setInterval(() => {
         myFrameCount++;
-        // player.move(e.keyCode)
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         map(maze);
         player.updatePlayer()
@@ -198,15 +158,35 @@ function startGame() {
         for (let i = 0; i < randomPosition.length; i++) {
             randomPosition[i].updateMonster()
         }
-
-        // ctx.clearRect(0, 0, canvas.width, canvas.height)
         for (let i = 0; i < randomPosition.length; i++) {
             randomPosition[i].drawMonster()
             if (col(randomPosition[i])) {
-                // alert('Press the key')
+                youLose();
                 console.log('collision detected')
             }
         }
     }, 20)
 
+}
+
+function youWin() {
+    let start = document.querySelector("#start");
+    let canvasGame = document.querySelector("canvas");
+    let gameOver = document.querySelector("#game-over");
+    let victory = document.querySelector('#you-win');
+    start.style.display = "none";
+    canvasGame.style.display = "none";
+    gameOver.style.display = "none";
+    victory.style.display = "inline-block";
+}
+
+function youLose() {
+    let start = document.querySelector("#start");
+    let canvasGame = document.querySelector("canvas");
+    let gameOver = document.querySelector("#game-over");
+    let victory = document.querySelector('#you-win');
+    start.style.display = "none";
+    canvasGame.style.display = "none";
+    gameOver.style.display = "inline-block";
+    victory.style.display = "none";
 }
