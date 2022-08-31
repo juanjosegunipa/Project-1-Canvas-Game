@@ -1,0 +1,49 @@
+body {
+    color: #ffffff;
+    background-image: url('.vscode/bg.jpg');
+    background-size: 100vw;
+    text-align: center;
+    padding-top: 100px;
+}
+
+canvas {
+    /* border: 1px solid blue; */
+    background-image: url(".vscode/sand.jpg");
+    text-align: center;
+}
+
+#start,
+#game-over {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -150px;
+    height: 200px;
+    width: 250px;
+    text-align: center;
+}
+
+#start a,
+#game-over a {
+    border: 3px solid white;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    display: block;
+    width: 200px;
+    text-align: center;
+    font-size: 2em;
+    display: inline-block;
+}
+
+/* #start a:hover,
+#game-over a:hover {
+    background-color: white;
+    color: #1bafdb;
+} */
