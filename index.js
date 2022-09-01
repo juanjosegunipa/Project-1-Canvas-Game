@@ -135,6 +135,7 @@ function startGame() {
     let victory = document.querySelector('#you-win');
     backgroundSong.play();
     backgroundSong.currentTime = 0;
+    document.body.style.backgroundImage = "url('./images/bg2.jpg')";
     start.style.display = "none";
     canvasGame.style.display = "inline-block";
     gameOver.style.display = "none";
