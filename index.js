@@ -126,8 +126,6 @@ function col(monster) {
     }
 }
 
-
-
 function startGame() {
     let start = document.querySelector("#start");
     let canvasGame = document.querySelector("canvas");
