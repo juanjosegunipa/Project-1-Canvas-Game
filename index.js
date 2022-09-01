@@ -2,6 +2,8 @@ const canvas = document.querySelector('canvas');
 canvas.width = 1200;
 canvas.height = 600;
 let ctx = canvas.getContext('2d');
+let myFrameCount = 0;
+let myIntervalId;
 const rock = new Image();
 rock.src = "./images/rock.png"
 let messi = new Image();
@@ -107,8 +109,9 @@ class Monsters {
     updateMonster() {
         this.y += 1;
         if (this.y > canvas.height - this.height) {
-            this.y = 0;
+            return true;
         }
+        return false;
     }
 }
 
@@ -116,7 +119,6 @@ let randomPosition = [];
 for (let i = 0; i < randomPosition.length; i++) {
     randomPosition[i];
 }
-let myFrameCount = 0;
 
 function col(monster) {
     if ((player.x * player.width) < monster.x + monster.width && (player.x * player.width) + player.width > monster.x && (player.y * player.height) < monster.y + monster.width && (player.y * player.height) + player.height > monster.y) {
@@ -159,16 +161,19 @@ function startGame() {
         player.newX = 0;
         player.newY = 0;
     })
-    setInterval(() => {
+    myIntervalId = setInterval(() => {
         myFrameCount++;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         map(maze);
         player.updatePlayer()
-        if (myFrameCount % 250 === 0) {
+        if (myFrameCount % 50 === 0) {
             randomPosition.push(new Monsters(jellyfish, Math.random() * (canvas.width - 35), 0));
         }
         for (let i = 0; i < randomPosition.length; i++) {
-            randomPosition[i].updateMonster()
+            if (randomPosition[i].updateMonster()) {
+                randomPosition.splice(i, 1);
+            }
+
         }
         for (let i = 0; i < randomPosition.length; i++) {
             randomPosition[i].drawMonster()
@@ -183,6 +188,7 @@ function startGame() {
 }
 
 function youWin() {
+    clearInterval(myIntervalId);
     let start = document.querySelector("#start");
     let canvasGame = document.querySelector("canvas");
     let gameOver = document.querySelector("#game-over");
@@ -194,6 +200,7 @@ function youWin() {
 }
 
 function youLose() {
+    clearInterval(myIntervalId);
     let start = document.querySelector("#start");
     let canvasGame = document.querySelector("canvas");
     let gameOver = document.querySelector("#game-over");
