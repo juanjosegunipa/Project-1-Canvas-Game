@@ -16,13 +16,13 @@ canvas {
 #game-over,
 #you-win {
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: black;
     padding: 20px;
     position: fixed;
-    top: 50%;
+    top: 35%;
     left: 50%;
     margin-top: -100px;
-    margin-left: -150px;
+    margin-left: -140px;
     height: 200px;
     width: 250px;
     text-align: center;

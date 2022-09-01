@@ -10,6 +10,12 @@ const jellyfish = new Image();
 jellyfish.src = "./images/jellyfish.webp"
 const patrick = new Image();
 patrick.src = "./images/patrick.webp"
+let backgroundSong = new Audio();
+backgroundSong.src = "./audio/bg-music.mp3"
+let garySafe = new Audio();
+garySafe.src = "./audio/gary-safe.mp3"
+let scream = new Audio();
+scream.src = "./audio/scream.mp3"
 
 function x() {
     let r = Math.random();
@@ -69,12 +75,16 @@ class Player {
         if (keyCode === 40 && maze[this.y + 1][this.x] === 0) this.y += 1;
         if (keyCode === 38 && maze[this.y - 1][this.x] === 2) {
             this.y -= 1;
-            console.log('You win!')
+            console.log('You win!');
+            garySafe.play();
+            garySafe.currentTime = 0;
             youWin();
         }
         if (keyCode === 40 && maze[this.y + 1][this.x] === 2) {
             this.y += 1;
-            console.log('You win!')
+            console.log('You win!');
+            garySafe.play();
+            garySafe.currentTime = 0;
             youWin();
         }
 
@@ -121,6 +131,8 @@ function startGame() {
     let canvasGame = document.querySelector("canvas");
     let gameOver = document.querySelector("#game-over");
     let victory = document.querySelector('#you-win');
+    backgroundSong.play();
+    backgroundSong.currentTime = 0;
     start.style.display = "none";
     canvasGame.style.display = "inline-block";
     gameOver.style.display = "none";
@@ -161,6 +173,7 @@ function startGame() {
         for (let i = 0; i < randomPosition.length; i++) {
             randomPosition[i].drawMonster()
             if (col(randomPosition[i])) {
+                scream.play();
                 youLose();
                 console.log('collision detected')
             }
